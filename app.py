@@ -5,7 +5,7 @@ import xml.etree.ElementTree as ET
 app = Flask(__name__)
 CORS(app)  # This will enable CORS for all routes
 
-@app.route('/', methods=['POST'])
+@app.route('/updateXML', methods=['POST'])
 def update_xml():
     new_order = request.form['newOrder']
     tree = ET.parse('data.xml')
