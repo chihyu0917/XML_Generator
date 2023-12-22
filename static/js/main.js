@@ -225,7 +225,7 @@ function deleteDisplay() {
 
 function deleteData(index) {
     var xhttp = new XMLHttpRequest();
-    xhttp.open("POST", "http://127.0.0.1:5000/deleteOrder", true);
+    xhttp.open("POST", "https://xml-generator-1lwe.onrender.com/deleteOrder", true);
     xhttp.setRequestHeader("Content-Type", "application/json");
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
@@ -348,7 +348,7 @@ function submitModifyAlbum(index) {
 
 function submitModifyData(orderData) {
     var xhttp = new XMLHttpRequest();
-    xhttp.open("POST", "http://127.0.0.1:5000/modifyOrder", true);
+    xhttp.open("POST", "https://xml-generator-1lwe.onrender.com/modifyOrder", true);
     xhttp.setRequestHeader("Content-type", "application/json");
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
@@ -381,7 +381,7 @@ function submitForm() {
 
 function addData(data) {
     var xhttp = new XMLHttpRequest();
-    xhttp.open("POST", "http://127.0.0.1:5000/addOrder", true);
+    xhttp.open("POST", "https://xml-generator-1lwe.onrender.com/addOrder", true);
     xhttp.setRequestHeader("Content-Type", "application/json");
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
@@ -449,7 +449,7 @@ function csvToJson(csv) {
 
 function generateXML(result) {
     var xhttp = new XMLHttpRequest();
-    xhttp.open("POST", "http://127.0.0.1:5000/generateXML", true);
+    xhttp.open("POST", "https://xml-generator-1lwe.onrender.com/generateXML", true);
     xhttp.setRequestHeader("Content-Type", "application/json");
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
