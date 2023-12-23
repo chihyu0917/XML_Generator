@@ -135,24 +135,26 @@ function conditionDisplay() {
         if (xml) {
             try {
                 var orders = xml.getElementsByTagName("Order");
-                var priceRange = document.getElementById("AlbumPrice").value;
+                var singerSearch = document.getElementById("Singer").value; 
+                var albumNum = 0;
                 var cartHtml = "<ul>";
                 
                 for (var i = 0; i < orders.length; i++) {
-                    if (orders[i].getElementsByTagName("AlbumPrice")[0].textContent > priceRange) {
+                    console.log(orders[i].getElementsByTagName("Singer")[0].textContent);
+                    if (orders[i].getElementsByTagName("Singer")[0].textContent == singerSearch) {
                         cartHtml += "<li>" + 
                             "<h2>" + orders[i].getElementsByTagName("Singer")[0].textContent + "</h2>" +
                             orders[i].getElementsByTagName("AlbumName")[0].textContent + "<br>" + 
                             "<image src='" + orders[i].getElementsByTagName("AlbumImageURL")[0].textContent + "' width='300px'>" + "<br>" +
                             "<h2>" + orders[i].getElementsByTagName("AlbumPrice")[0].textContent + "</h2>" +
                             "</li>";
-                    }
-                    else {
-                        alert("沒有符合條件的專輯");
+                        albumNum++;
                     }
                 }
+                if (albumNum == 0 && singerSearch) {
+                    alert("沒有符合條件的專輯");
+                }
                 cartHtml += "</ul>";
-
                 document.getElementById("xmllist").innerHTML = cartHtml;
             } catch (e) {
                 console.error("Error: ", e);
@@ -162,6 +164,7 @@ function conditionDisplay() {
         }
     });
 }
+
 
 
 // function deleteDisplay() { 
@@ -225,7 +228,7 @@ function deleteDisplay() {
 
 function deleteData(index) {
     var xhttp = new XMLHttpRequest();
-    xhttp.open("POST", "https://xml-generator-1lwe.onrender.com/deleteOrder", true);
+    xhttp.open("POST", "http://127.0.0.1:5000/deleteOrder", true);
     xhttp.setRequestHeader("Content-Type", "application/json");
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
@@ -348,7 +351,7 @@ function submitModifyAlbum(index) {
 
 function submitModifyData(orderData) {
     var xhttp = new XMLHttpRequest();
-    xhttp.open("POST", "https://xml-generator-1lwe.onrender.com/modifyOrder", true);
+    xhttp.open("POST", "http://127.0.0.1:5000/modifyOrder", true);
     xhttp.setRequestHeader("Content-type", "application/json");
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
@@ -381,7 +384,7 @@ function submitForm() {
 
 function addData(data) {
     var xhttp = new XMLHttpRequest();
-    xhttp.open("POST", "https://xml-generator-1lwe.onrender.com/addOrder", true);
+    xhttp.open("POST", "http://127.0.0.1:5000/addOrder", true);
     xhttp.setRequestHeader("Content-Type", "application/json");
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
@@ -449,7 +452,7 @@ function csvToJson(csv) {
 
 function generateXML(result) {
     var xhttp = new XMLHttpRequest();
-    xhttp.open("POST", "https://xml-generator-1lwe.onrender.com/generateXML", true);
+    xhttp.open("POST", "http://127.0.0.1:5000/generateXML", true);
     xhttp.setRequestHeader("Content-Type", "application/json");
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
